@@ -1,0 +1,61 @@
+<!--
+Author: Darshan Badal
+Date: 2025-10-08
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Task D — CSS Selector Playground</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>CSS Selector Playground</h1>
+    <p class="intro">A small page to practice element, class, id, group, descendant and attribute selectors.</p>
+  </header>
+
+  <main class="container">
+    <!-- two different divs with different class attributes -->
+    <div class="box">
+      <h2>Box: Element & Class</h2>
+      <p>This is a simple box using the <code>.box</code> class to test class selectors.</p>
+    </div>
+
+    <div class="card highlight">
+      <h3>Card: Multiple classes</h3>
+      <p id="special-message">This paragraph uses an ID selector. It contains three sentences for validation purposes. Use it to test the <code>#special-message</code> rule in your CSS.</p>
+      <p class="note">Notes can appear here to test element and class styling.</p>
+    </div>
+
+    <!-- list with at least 3 list items -->
+    <section aria-labelledby="list-title">
+      <h2 id="list-title">Things to test</h2>
+      <ul>
+        <li>Element selectors (e.g., <code>h1</code>, <code>p</code>)</li>
+        <li>Class and ID selectors (e.g., <code>.box</code>, <code>#special-message</code>)</li>
+        <li>Attribute selectors and descendant selectors</li>
+      </ul>
+    </section>
+
+    <!-- attribute examples -->
+    <section>
+      <h2>Attribute examples</h2>
+      <p>
+        <a href="https://example.com" target="_blank" rel="noopener noreferrer">Visit Example</a>
+      </p>
+      <p>
+        <img src="https://images.unsplash.com/photo-1753898854513-97ea15851501?q=80&w=1166&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="Example placeholder image showing a simple mockup">
+      </p>
+    </section>
+
+
+  </main>
+
+  <footer>
+    <p>Built for Task D — CSS Selector Practice.</p>
+  </footer>
+</body>
+</html>
