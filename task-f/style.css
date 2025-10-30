@@ -1,0 +1,121 @@
+:root {
+  --page-bg: #fcfdfc;
+  --text: #2a2a2a;
+  --brand: #6c4f8d;
+  --table-alt: #f9f5ff;
+  --border: #e0e0e0;
+}
+
+/* Basic layout */
+* { box-sizing: border-box; }
+html,body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--page-bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.4;
+}
+
+/* Container */
+.container {
+  max-width: 980px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.page-header h1 {
+  margin: 0 0 6px 0;
+  font-size: 28px;
+}
+.lead {
+  margin: 0 0 18px 0;
+  color: var(--text);
+  opacity: 0.9;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+/* Buttons */
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+}
+
+.brand {
+  background: var(--brand);
+  color: white;
+  border: 1px solid var(--brand);
+}
+
+/* Table */
+.table-wrap {
+  overflow: auto;
+  border-radius: 8px;
+  background: white;
+  padding: 12px;
+  border: 1px solid var(--border);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 0;
+}
+
+thead th {
+  text-align: left;
+  padding: 10px 12px;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+  background: white;
+  color: var(--text);
+}
+
+tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--table-alt);
+}
+
+/* Actions */
+td .btn-remove {
+  background: transparent;
+  color: var(--brand);
+  border: 1px solid var(--border);
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+/* Focus outlines for accessibility */
+button:focus, a:focus {
+  outline: 3px solid rgba(108,79,141,0.18);
+  outline-offset: 2px;
+}
+
+/* Small helpers */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}

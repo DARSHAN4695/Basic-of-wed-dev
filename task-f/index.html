@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Task F — Add row</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container" id="main">
+    <header class="page-header">
+      <h1>Courses</h1>
+      <p class="lead">Click <strong>Add row</strong> to append a new course to the table.</p>
+    </header>
+
+    <div class="controls">
+      <button id="add-row" class="btn brand" type="button" aria-label="Add a new course row">Add row</button>
+    </div>
+
+    <section class="table-wrap" aria-labelledby="courses-heading">
+      <h2 id="courses-heading" class="visually-hidden">Available courses</h2>
+
+      <table id="courses" class="table" aria-describedby="table-desc">
+        <caption id="table-desc">List of courses. By default there are no rows. Use Add row to add courses.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Code</th>
+            <th scope="col">Course</th>
+            <th scope="col">Credits</th>
+            <th scope="col">Semester</th>
+            <th scope="col">Instructor</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows appended here by JavaScript -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="index.js"></script>
+</body>
+</html>
