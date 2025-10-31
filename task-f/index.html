@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>Weekly Timetable</title>
   <link rel="stylesheet" href="style.css">
-  <script src="index.js"></script>
 </head>
 
 <body>
@@ -19,16 +17,15 @@
   </header>
 
   <main class="content">
-    <!-- Top row split into two blocks -->
     <div class="top-grid">
-      <!-- Student info (30%) -->
+      <!-- Student info -->
       <section class="student-info" aria-label="Student information">
         <h2 class="student-info-title">Information</h2>
         <p><span class="student-name">Name - Darshan Badal</span></p>
         <p><span class="student-group">Group - NITS23K</span></p>
       </section>
 
-      <!-- Controls (70%): add course + day marks -->
+      <!-- Add course controls -->
       <section class="controls" aria-label="Add course row">
         <h2 class="controls-title">Add Course</h2>
 
@@ -39,9 +36,14 @@
           </div>
 
           <fieldset class="days-group">
-            <legend>Days (yes = &#9989;, no = &#10060;)</legend>
+            <legend>Days (yes = ✅, no = ❌)</legend>
+            <label><input type="checkbox" name="day" value="Mon"> Mon</label>
             <label><input type="checkbox" name="day" value="Tue"> Tue</label>
+            <label><input type="checkbox" name="day" value="Wed"> Wed</label>
             <label><input type="checkbox" name="day" value="Thu"> Thu</label>
+            <label><input type="checkbox" name="day" value="Fri"> Fri</label>
+            <label><input type="checkbox" name="day" value="Sat"> Sat</label>
+            <label><input type="checkbox" name="day" value="Sun"> Sun</label>
           </fieldset>
 
           <div class="form-row">
@@ -58,16 +60,21 @@
         <thead>
           <tr>
             <th>Course</th>
+            <th>Mon</th>
             <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
             <th>Fri</th>
+            <th>Sat</th>
+            <th>Sun</th>
           </tr>
         </thead>
-        <tbody>
-        </tbody>
+        <tbody></tbody>
       </table>
     </div>
   </main>
 
+  <!-- ✅ JavaScript must be loaded after HTML -->
+  <script src="index.js"></script>
 </body>
-
 </html>
