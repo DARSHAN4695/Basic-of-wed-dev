@@ -1,133 +1,94 @@
-// Task G - Custom Form Validation and Table Append
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("registrationForm");
+  const tableBody = document.querySelector("#dataTable tbody");
+  const timestampField = document.getElementById("timestamp");
 
-const form = document.getElementById("userForm");
-const tbody = document.getElementById("table-body");
-const timestamp = document.getElementById("timestamp");
+  // Set timestamp initially
+  timestampField.value = new Date().toLocaleString();
 
-// Fill timestamp automatically
-function fillTimestamp() {
-  timestamp.value = new Date().toISOString();
-}
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    clearErrors();
 
-// Validation functions
-function validateFullName(name) {
-  if (!name.trim()) return "Please enter your full name (first and last).";
-  const parts = name.trim().split(/\s+/);
-  if (parts.length < 2) return "Enter both first and last name.";
-  if (parts.some((p) => p.length < 2))
-    return "Each name part must be at least 2 characters long.";
-  return "";
-}
+    // Update timestamp
+    timestampField.value = new Date().toLocaleString();
 
-function validateEmail(email) {
-  if (!email.trim()) return "Please enter your email address.";
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/; // ✅ fixed regex
-  if (!re.test(email))
-    return "Please enter a valid email (e.g., you@example.com).";
-  return "";
-}
+    // Collect field values
+    const fullName = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const birthDate = document.getElementById("birthDate").value;
+    const terms = document.getElementById("terms").checked;
 
-function validatePhone(phone) {
-  if (!phone.trim()) return "Please enter your phone number.";
-  const cleaned = phone.replace(/[\s-]/g, "");
-  const re = /^(?:\+358|0)\d{7,12}$/; // ✅ fixed regex
-  if (!re.test(cleaned))
-    return "Phone must start with +358 or 0 and contain 7–12 digits.";
-  return "";
-}
+    let valid = true;
 
-function validateBirthdate(birthdate) {
-  if (!birthdate) return "Please select your birth date.";
-  const b = new Date(birthdate);
-  const now = new Date();
-  if (b > now) return "Birth date cannot be in the future.";
-
-  const age =
-    now.getFullYear() -
-    b.getFullYear() -
-    (now.getMonth() < b.getMonth() ||
-    (now.getMonth() === b.getMonth() && now.getDate() < b.getDate())
-      ? 1
-      : 0);
-
-  if (age < 13) return "You must be at least 13 years old to submit.";
-  return "";
-}
-
-function validateTerms(checked) {
-  return checked ? "" : "You must accept the terms.";
-}
-
-// Display error messages near fields
-function showError(id, msg) {
-  document.getElementById(id).textContent = msg;
-}
-
-// Clear all previous errors
-function clearErrors() {
-  ["fullname", "email", "phone", "birthdate", "terms"].forEach((field) =>
-    showError(`error-${field}`, "")
-  );
-}
-
-// Prevent XSS injection when displaying text
-function escapeHtml(str) {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
-// Add new row to the table
-function addRow(data) {
-  const row = document.createElement("tr");
-  row.innerHTML = `
-    <td>${escapeHtml(data.timestamp)}</td>
-    <td>${escapeHtml(data.fullname)}</td>
-    <td>${escapeHtml(data.email)}</td>
-    <td>${escapeHtml(data.phone)}</td>
-    <td>${escapeHtml(data.birthdate)}</td>
-    <td>${data.terms ? "Yes" : "No"}</td>
-  `;
-  tbody.appendChild(row);
-}
-
-// Handle form submission
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  fillTimestamp();
-  clearErrors();
-
-  const data = {
-    fullname: document.getElementById("fullname").value.trim(),
-    email: document.getElementById("email").value.trim(),
-    phone: document.getElementById("phone").value.trim(),
-    birthdate: document.getElementById("birthdate").value,
-    terms: document.getElementById("terms").checked,
-    timestamp: timestamp.value,
-  };
-
-  const errors = {
-    fullname: validateFullName(data.fullname),
-    email: validateEmail(data.email),
-    phone: validatePhone(data.phone),
-    birthdate: validateBirthdate(data.birthdate),
-    terms: validateTerms(data.terms),
-  };
-
-  let hasError = false;
-  for (const field in errors) {
-    if (errors[field]) {
-      showError(`error-${field}`, errors[field]);
-      hasError = true;
+    // ✅ Validate Full Name
+    const nameParts = fullName.split(" ");
+    if (nameParts.length < 2 || nameParts.some(n => n.length < 2)) {
+      showError("nameError", "Please enter your full name (first and last).");
+      valid = false;
     }
+
+    // ✅ Validate Email
+    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    if (!emailRegex.test(email)) {
+      showError("emailError", "Please enter a valid email address (e.g., name@example.com).");
+      valid = false;
+    }
+
+    // ✅ Validate Phone (Finnish +358 pattern)
+    const phoneRegex = /^\+358\d{6,10}$/;
+    if (!phoneRegex.test(phone)) {
+      showError("phoneError", "Phone must start with +358 and have 6–10 digits.");
+      valid = false;
+    }
+
+    // ✅ Validate Birth Date
+    if (!birthDate) {
+      showError("birthError", "Please select your birth date.");
+      valid = false;
+    } else {
+      const dob = new Date(birthDate);
+      const today = new Date();
+      const age = (today - dob) / (365.25 * 24 * 60 * 60 * 1000);
+      if (dob > today) {
+        showError("birthError", "Birth date cannot be in the future.");
+        valid = false;
+      } else if (age < 13) {
+        showError("birthError", "You must be at least 13 years old.");
+        valid = false;
+      }
+    }
+
+    // ✅ Validate Terms
+    if (!terms) {
+      showError("termsError", "You must accept the terms to continue.");
+      valid = false;
+    }
+
+    // ✅ If valid, add new row
+    if (valid) {
+      const newRow = document.createElement("tr");
+      newRow.innerHTML = `
+        <td>${timestampField.value}</td>
+        <td>${fullName}</td>
+        <td>${email}</td>
+        <td>${phone}</td>
+        <td>${birthDate}</td>
+      `;
+      tableBody.appendChild(newRow);
+
+      // Reset form
+      form.reset();
+      timestampField.value = new Date().toLocaleString();
+    }
+  });
+
+  function showError(id, message) {
+    document.getElementById(id).textContent = message;
   }
 
-  if (hasError) return;
-
-  addRow(data);
-  form.reset();
-  timestamp.value = "";
+  function clearErrors() {
+    document.querySelectorAll(".error").forEach(e => e.textContent = "");
+  }
 });
