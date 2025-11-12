@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task H – Tailwind Registration Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="index.js"></script>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans">
+
+  <!-- Header -->
+  <header class="bg-blue-500 text-white p-6 text-center">
+    <h1 class="text-3xl font-bold">Registration Form</h1>
+  </header>
+
+  <main class="max-w-5xl mx-auto p-6 md:p-12">
+
+    <!-- Top Grid: Student Info + Form -->
+    <div class="grid md:grid-cols-2 gap-8 mb-12">
+
+      <!-- Student Info -->
+      <section class="bg-white p-6 rounded-lg shadow" aria-label="Student information">
+        <h2 class="text-xl font-semibold mb-4">Information</h2>
+        <p><span class="font-medium">Name:</span> Darshan Badal</p>
+        <p><span class="font-medium">Group:</span> NITS23K</p>
+      </section>
+
+      <!-- Form Section -->
+      <section class="bg-white p-6 rounded-lg shadow" aria-label="Form section">
+        <h2 class="text-xl font-semibold mb-6">Fill the form</h2>
+
+        <form id="registrationForm" novalidate class="space-y-4">
+
+          <input type="hidden" id="timestamp" name="timestamp">
+
+          <!-- Full Name -->
+          <div>
+            <label for="fullName" class="block font-medium mb-1">Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="First and Last name" 
+                   class="w-full p-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <small class="text-red-500 mt-1 hidden" id="nameError"></small>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block font-medium mb-1">Email</label>
+            <input type="email" id="email" name="email" placeholder="name@example.com" 
+                   class="w-full p-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <small class="text-red-500 mt-1 hidden" id="emailError"></small>
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <label for="phone" class="block font-medium mb-1">Phone (+358…)</label>
+            <input type="tel" id="phone" name="phone" placeholder="+358123456789" 
+                   class="w-full p-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <small class="text-red-500 mt-1 hidden" id="phoneError"></small>
+          </div>
+
+          <!-- Birth Date -->
+          <div>
+            <label for="birthDate" class="block font-medium mb-1">Birth Date</label>
+            <input type="date" id="birthDate" name="birthDate" 
+                   class="w-full p-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <small class="text-red-500 mt-1 hidden" id="birthError"></small>
+          </div>
+
+          <!-- Terms Checkbox -->
+          <div class="flex items-center space-x-2">
+            <input type="checkbox" id="terms" name="terms" class="h-4 w-4 text-blue-500">
+            <label for="terms" class="text-sm">I accept the terms and conditions</label>
+          </div>
+          <small class="text-red-500 mt-1 hidden" id="termsError"></small>
+
+          <!-- Buttons -->
+          <div class="flex space-x-4">
+            <button type="submit" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-md transition-colors duration-200">Submit</button>
+            <button type="reset" class="flex-1 bg-gray-300 hover:bg-gray-400 text-slate-800 font-semibold py-3 rounded-md transition-colors duration-200">Clear</button>
+          </div>
+
+        </form>
+      </section>
+
+    </div>
+
+    <!-- Data Table -->
+    <div class="overflow-x-auto bg-white p-4 rounded-lg shadow">
+      <table class="w-full table-auto border-collapse border border-slate-300" id="dataTable">
+        <thead class="bg-slate-100">
+          <tr>
+            <th class="border border-slate-300 px-4 py-2 text-left">Timestamp</th>
+            <th class="border border-slate-300 px-4 py-2 text-left">Full Name</th>
+            <th class="border border-slate-300 px-4 py-2 text-left">Email</th>
+            <th class="border border-slate-300 px-4 py-2 text-left">Phone</th>
+            <th class="border border-slate-300 px-4 py-2 text-left">Birth Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+  </main>
+
+</body>
+</html>
