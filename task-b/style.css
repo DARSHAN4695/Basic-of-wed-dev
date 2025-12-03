@@ -1,0 +1,107 @@
+/*
+Author: Darshan Badal
+Date: 2025-12-03
+*/
+
+/* Base layout */
+:root {
+  --bg: #0f172a;            /* page background */
+  --text: #e2e8f0;          /* paragraph text color */
+  --heading: #93c5fd;       /* heading color */
+  --link: #38bdf8;          /* link default color */
+  --link-hover: #f59e0b;    /* link hover color */
+  --accent: #64748b;        /* subtle accents */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  line-height: 1.6;
+  padding: 2rem 1rem;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* Headings */
+h1, h2 {
+  color: var(--heading);
+  margin: 0 0 0.75rem 0;
+}
+
+h1 {
+  font-size: 2.2rem;   /* required: heading font size */
+  letter-spacing: 0.3px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 0.35rem;
+}
+
+/* Paragraphs */
+p {
+  color: var(--text);  /* required: paragraph text color */
+  margin: 0 0 1rem 0;
+}
+
+.intro {
+  max-width: 64ch;
+}
+
+/* Lists */
+ul.hobbies,
+ol.goals {
+  margin: 0.5rem 0 1.25rem 1.25rem;
+}
+
+/* Custom unordered list styles */
+ul.hobbies {
+  list-style-type: square;         /* required: custom list style */
+}
+
+ul.hobbies li {
+  padding-left: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Custom ordered list styles */
+ol.goals {
+  list-style-type: decimal-leading-zero; /* required: custom list style */
+}
+
+ol.goals li {
+  margin-bottom: 0.5rem;
+}
+
+/* Links */
+a {
+  color: var(--link);              /* required: custom link styles */
+  text-decoration: none;
+  border-bottom: 1px dotted var(--link);
+}
+
+a:hover,
+a:focus {
+  color: var(--link-hover);
+  border-bottom-color: var(--link-hover);
+  outline: none;
+}
+
+/* Footer */
+.footer-note {
+  color: var(--accent);
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
